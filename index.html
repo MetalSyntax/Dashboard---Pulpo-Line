@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+    <script>
+       document.addEventListener("DOMContentLoaded", function () {
+    const menuButton = document.getElementById("menuButton");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    const closeButton = document.getElementById("closeButton");
+
+    if (!menuButton || !sidebar || !overlay || !closeButton) {
+        console.error("Uno o más elementos no existen en el DOM.");
+        return;
+    }
+
+    function toggleMenu(open) {
+        if (open) {
+            sidebar.classList.remove("hidden", "-translate-x-full");
+            overlay.classList.remove("hidden");
+        } else {
+            sidebar.classList.add("hidden", "-translate-x-full");
+            overlay.classList.add("hidden");
+        }
+    }
+
+    menuButton.addEventListener("click", () => toggleMenu(true));
+    closeButton.addEventListener("click", () => toggleMenu(false));
+    overlay.addEventListener("click", () => toggleMenu(false));
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth >= 1024) {
+            sidebar.classList.remove("hidden");  
+            sidebar.classList.remove("-translate-x-full");  
+        } else {
+            sidebar.classList.add("hidden"); 
+        }
+    });
+});
+    </script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex">
+        <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden lg:hidden z-10"></div>
+        <!-- Sidebar -->
+        <aside id="sidebar" class="bg-white lg:w-48 p-5 border-r rounded-md hidden lg:block fixed lg:relative top-0 left-0 h-full lg:h-auto
+        z-10 w-80">
+            <button id="closeButton" class="absolute top-3 right-3 text-gray-500 text-2xl hidden">&times;</button>
+            <h2 class="flex text-lg font-bold w-full items-center justify-center"><img src="img/particle.png" alt="particle" class="mr-2">Particles</h2>
+            <ul class="mt-10 space-y-4 text-center">
+                <li class="text-gray-400 px-2 py-6 rounded-full flex justify-center"><svg class='mr-2'   width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Iconly/Bold/Profile">
+                    <g id="Profile">
+                    <path id="Profile_2" fill-rule="evenodd" clip-rule="evenodd" d="M17.294 7.29105C17.294 10.2281 14.9391 12.5831 12 12.5831C9.0619 12.5831 6.70601 10.2281 6.70601 7.29105C6.70601 4.35402 9.0619 2 12 2C14.9391 2 17.294 4.35402 17.294 7.29105ZM12 22C7.66237 22 4 21.295 4 18.575C4 15.8539 7.68538 15.1739 12 15.1739C16.3386 15.1739 20 15.8789 20 18.599C20 21.32 16.3146 22 12 22Z" fill="#D0D2DA"/>
+                    </g>
+                    </g>
+                    </svg>Profile</li>
+                <li class="text-indigo-600 bg-purple-100 hover:bg-purple-200 cursor-pointer
+                 font-semi-bold px-2 py-6 rounded-full mx-auto flex justify-center"><svg class=mr-2' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Iconly/Bold/Document">
+                    <g id="Document">
+                    <path id="Document_2" fill-rule="evenodd" clip-rule="evenodd" d="M7.81 2H16.191C19.28 2 21 3.78 21 6.83V17.16C21 20.26 19.28 22 16.191 22H7.81C4.77 22 3 20.26 3 17.16V6.83C3 3.78 4.77 2 7.81 2ZM8.08 6.66V6.65H11.069C11.5 6.65 11.85 7 11.85 7.429C11.85 7.87 11.5 8.22 11.069 8.22H8.08C7.649 8.22 7.3 7.87 7.3 7.44C7.3 7.01 7.649 6.66 8.08 6.66ZM8.08 12.74H15.92C16.35 12.74 16.7 12.39 16.7 11.96C16.7 11.53 16.35 11.179 15.92 11.179H8.08C7.649 11.179 7.3 11.53 7.3 11.96C7.3 12.39 7.649 12.74 8.08 12.74ZM8.08 17.31H15.92C16.319 17.27 16.62 16.929 16.62 16.53C16.62 16.12 16.319 15.78 15.92 15.74H8.08C7.78 15.71 7.49 15.85 7.33 16.11C7.17 16.36 7.17 16.69 7.33 16.95C7.49 17.2 7.78 17.35 8.08 17.31Z" fill="#551FFF"/>
+                    </g>
+                    </g>
+                    </svg>
+                    Billings</li>
+                <li class="text-gray-400 px-2 py-6 rounded-full flex justify-center"><svg class='mr-2' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Iconly/Bold/Wallet">
+                    <g id="Wallet">
+                    <path id="Wallet_2" fill-rule="evenodd" clip-rule="evenodd" d="M17.7689 8.3818H22C22 4.98459 19.9644 3 16.5156 3H7.48444C4.03556 3 2 4.98459 2 8.33847V15.6615C2 19.0154 4.03556 21 7.48444 21H16.5156C19.9644 21 22 19.0154 22 15.6615V15.3495H17.7689C15.8052 15.3495 14.2133 13.7975 14.2133 11.883C14.2133 9.96849 15.8052 8.41647 17.7689 8.41647V8.3818ZM17.7689 9.87241H21.2533C21.6657 9.87241 22 10.1983 22 10.6004V13.131C21.9952 13.5311 21.6637 13.8543 21.2533 13.8589H17.8489C16.8548 13.872 15.9855 13.2084 15.76 12.2643C15.6471 11.6783 15.8056 11.0736 16.1931 10.6122C16.5805 10.1509 17.1573 9.88007 17.7689 9.87241ZM17.92 12.533H18.2489C18.6711 12.533 19.0133 12.1993 19.0133 11.7877C19.0133 11.3761 18.6711 11.0424 18.2489 11.0424H17.92C17.7181 11.0401 17.5236 11.1166 17.38 11.255C17.2364 11.3934 17.1555 11.5821 17.1556 11.779C17.1555 12.1921 17.4964 12.5282 17.92 12.533ZM6.73778 8.3818H12.3822C12.8044 8.3818 13.1467 8.04812 13.1467 7.63649C13.1467 7.22487 12.8044 6.89119 12.3822 6.89119H6.73778C6.31903 6.89116 5.9782 7.2196 5.97333 7.62783C5.97331 8.04087 6.31415 8.37705 6.73778 8.3818Z" fill="#D0D2DA"/>
+                    </g>
+                    </g>
+                    </svg>
+                    Invoices</li>
+                <hr>
+                <li class="text-gray-400 px-2 py-6 rounded-full flex justify-center"><img src="img/setting.png" alt="setting" class="mr-2">Settings</li>
+                <li class="text-gray-400 px-2 py-6 rounded-full flex justify-center"><svg class='mr-2' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Telephone">
+                    <g id="Group">
+                    <g id="Calling">
+                    <path id="Fill 1" d="M14.4183 5.48994C13.9423 5.402 13.5051 5.70579 13.4144 6.17048C13.3238 6.63516 13.6285 7.08884 14.0916 7.17978C15.4859 7.4516 16.5625 8.53085 16.8353 9.92989V9.93089C16.913 10.3336 17.2676 10.6264 17.6759 10.6264C17.7307 10.6264 17.7854 10.6214 17.8412 10.6114C18.3043 10.5185 18.609 10.0658 18.5184 9.60012C18.1111 7.51055 16.5027 5.89666 14.4183 5.48994" fill="#D0D2DA"/>
+                    <path id="Fill 3" d="M14.3561 2.00793C14.133 1.97595 13.9089 2.04191 13.7306 2.18381C13.5474 2.32771 13.4329 2.53557 13.408 2.76841C13.3552 3.23908 13.6948 3.66479 14.1649 3.71776C17.4065 4.07951 19.9261 6.60477 20.2906 9.85654C20.3394 10.2922 20.7049 10.621 21.1411 10.621C21.174 10.621 21.2059 10.619 21.2387 10.615C21.4668 10.59 21.67 10.4771 21.8134 10.2972C21.9558 10.1174 22.0205 9.89351 21.9946 9.66467C21.5405 5.60746 18.4004 2.45862 14.3561 2.00793" fill="#D0D2DA"/>
+                    </g>
+                    </g>
+                    <g id="Call">
+                    <path id="Stroke 1" fill-rule="evenodd" clip-rule="evenodd" d="M11.0317 12.9724C15.0208 16.9604 15.9258 12.3467 18.4656 14.8848C20.9143 17.3328 22.3216 17.8232 19.2192 20.9247C18.8306 21.237 16.3616 24.9943 7.6846 16.3197C-0.993478 7.644 2.76158 5.17244 3.07397 4.78395C6.18387 1.67385 6.66586 3.08938 9.11449 5.53733C11.6544 8.0765 7.04266 8.98441 11.0317 12.9724Z" fill="#D0D2DA"/>
+                    </g>
+                    </g>
+                    </svg>Help</li>
+                <li class="text-gray-400 px-2 py-6 rounded-full flex justify-center"><svg class="mr-2 width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Door">
+                    <g id="Logout">
+                    <path id="Logout_2" fill-rule="evenodd" clip-rule="evenodd" d="M9.89535 11.23C9.45785 11.23 9.11192 11.57 9.11192 12C9.11192 12.42 9.45785 12.77 9.89535 12.77H16V17.55C16 20 13.9753 22 11.4724 22H6.51744C4.02471 22 2 20.01 2 17.56V6.45C2 3.99 4.03488 2 6.52762 2H11.4927C13.9753 2 16 3.99 16 6.44V11.23H9.89535ZM19.6302 8.5402L22.5502 11.4502C22.7002 11.6002 22.7802 11.7902 22.7802 12.0002C22.7802 12.2002 22.7002 12.4002 22.5502 12.5402L19.6302 15.4502C19.4802 15.6002 19.2802 15.6802 19.0902 15.6802C18.8902 15.6802 18.6902 15.6002 18.5402 15.4502C18.2402 15.1502 18.2402 14.6602 18.5402 14.3602L20.1402 12.7702H16.0002V11.2302H20.1402L18.5402 9.6402C18.2402 9.3402 18.2402 8.8502 18.5402 8.5502C18.8402 8.2402 19.3302 8.2402 19.6302 8.5402Z" fill="#D0D2DA"/>
+                    </g>
+                    </g>
+                    </svg>Log out</li>
+            </ul>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="flex-1 p-6 z-0">
+            <!-- Header -->
+            <div class="flex w-full items-center space-x-4 bg-white p-4 rounded-md">
+                <button id="menuButton">
+                    <img class="lg:hidden" src="img/hamburger.png" alt="hamburger">
+                </button>               
+                <div class="container lg:border-gray-300 lg:pr-4 lg:border-solid lg:border-r-2">
+                    <input type="text" placeholder="Search" class="w-full border rounded-md p-2 bg-purple-100 hover:bg-purple-200 color-indigo-300 caret-indigo-600 placeholder-indigo-600">
+                    <div class="grid shrink-0 grid-cols-1 focus-within:relative">
+                    </div>
+                </div>
+                <span class="border rounded-full p-2 bg-purple-100 hover:bg-purple-200 hidden lg:block cursor-pointer
+                "><img src="img/calendar.png" alt="calendar">
+                </span>
+                <span class="border rounded-full p-2 bg-purple-100 hover:bg-purple-200 hidden lg:block cursor-pointer
+                "><img src="img/notification.png" alt="notification">
+                </span>
+                <span class="border rounded-full cursor-pointer
+                "><img src="img/admin.png" alt="admin"></span>
+                <div class="flex-wrap hidden lg:flex">
+                    <span class="text-md">Admin</span>
+                    <span class="text-xs">admin@domain.in</span>
+                </div>
+            </div>
+
+            <!-- Title -->
+            <div class="flex flex-wrap justify-between items-center mt-6 mb-6">
+                <h1 class="text-4xl font-semi-bold w-full">Dashboard</h1>
+                <span class="text-gray-400 text-sx font-light">Information about your billing</span>
+            </div>
+            
+            <!-- Revenue and Statistics -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div class="bg-white p-6 shadow rounded-lg relative">
+                    <span class="absolute top-2 right-2 bg-purple-100 hover:bg-purple-200 rounded-full p-2 text-indigo-600 text-sm cursor-pointer
+                    ">View Report</span>
+                    <h3 class="text-sm font-light mb-2">Total Revenue</h3>
+                    <span class="text-2xl font-semi-bold">USD 7.852</span>
+                    <p class="text-gray-400 text-xs"><span class="text-green-500">2.1%</span> vs last week</p>
+                    <p class="text-gray-400 text-xs mt-2">Sales from 1-12 Ago, 2024</p>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div class="bg-white p-4 shadow rounded-md content-center
+                    relative">
+                        <span class="absolute top-6 right-6 text-gray-400 bg-purple-100 hover:bg-purple-200 rounded-full p-2 cursor-pointer
+                        "><img src="img/person.png" alt="person"></span>
+                        <p class="text-4xl font-semi-bold">452</p>
+                        <h3 class="text-lg pt-5">Total Employees</h3>
+                        <p class="text-grey-500 text-xs flex"><img class="mr-2" src="img/Arrow-Up.png" alt="arrow-up">2 new employees added!</p>
+                    </div>
+                    <div class="bg-white p-4 shadow rounded-md content-center
+                    relative">
+                        <span class="absolute top-6 right-6 text-gray-400 bg-purple-100 hover:bg-purple-200 rounded-full p-2 cursor-pointer
+                        "><img src="img/clock.png" alt="clock"></span>
+                        <p class="text-4xl font-semi-bold">360</p>
+                        <h3 class="text-lg pt-5">On Time</h3>
+                        <p class="text-grey-500 text-xs flex"><img class="mr-2" src="img/Arrow-Up.png" alt="arrow-up"> 10% Less than yesterday</p>
+                    </div>
+                    <div class="bg-white p-6 shadow rounded-md content-center
+                    relative">
+                        <span class="absolute top-6 right-6 text-gray-400 bg-purple-100 hover:bg-purple-200 rounded-full p-2 cursor-pointer
+                        "><img src="img/time.png" alt="time"></span>
+                        <p class="text-4xl font-semi-bold">62</p>
+                        <h3 class="text-lg pt-5">Late Arrival</h3>
+                        <p class="text-grey-500 text-xs flex"><img class="mr-2" src="img/Arrow-Down.png" alt="arrow-up">3% Increase than yesterday</p>
+                    </div>
+                    <div class="bg-white p-4 shadow rounded-md content-center
+                    relative">
+                        <span class="absolute top-6 right-6 text-gray-400 bg-purple-100 hover:bg-purple-200 rounded-full p-2 cursor-pointer
+                        "><img src="img/moon.png" alt="moon"></span>
+                        <p class="text-4xl font-semi-bold">6</p>
+                        <h3 class="text-lg pt-5">Early Departures</h3>
+                        <p class="text-grey-500 text-xs flex"><img class="mr-2" src="img/Arrow-Up.png" alt="arrow-up"> 10% Less than yesterday</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Charts -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <div class="bg-white p-6 shadow rounded-lg relative">
+                    <span class="absolute top-2 right-2 bg-purple-100 hover:bg-purple-200 rounded-full p-2 text-indigo-600 text-sm cursor-pointer
+                    ">View Report</span>
+                    <h3 class="text-xs font-semi-bold">Attendance Comparison Chart</h3>
+                    <canvas id="attendanceChart"></canvas>
+                </div>
+                <div class="bg-white p-6 shadow rounded-lg relative">
+                    <span class="absolute top-2 right-2 bg-purple-100 hover:bg-purple-200 rounded-full p-2 text-indigo-600 text-sm cursor-pointer
+                    ">View Report</span>
+                    <h3 class="text-xs font-semi-bold">Order Chart</h3>
+                    <span class="text-2xl font-semi-bold">2.568</span>
+                    <p class="text-gray-400 text-xs"><span class="text-red-500">2.1%</span> vs last week</p>
+                    <p class="text-gray-400 text-xs mt-2">Sales from 1-6 Ago, 2024</p>
+                    <canvas id="orderChart"></canvas>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        const ctx1 = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+                datasets: [
+                    {
+                        label: 'Last 6 days',
+                        data: [90, 70, 80, 60, 100, 110, 90, 70, 80, 60, 100, 110],
+                        backgroundColor: '#551FFF',
+                        borderRadius: 15,
+                        barThickness: 8
+                    },
+                    {
+                        label: 'Last Week',
+                        data: [50, 90, 40, 80, 70, 50, 70,50, 90, 40, 70, 50],
+                        backgroundColor: '#D0D2DA',
+                        borderRadius: 15,
+                        barThickness: 8
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            pointStyle: 'circle'
+                        }   
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        
+        const ctx2 = document.getElementById('attendanceChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['01 Aug', '02 Aug', '03 Aug', '04 Aug', '05 Aug', '06 Aug', '07 Aug', '08 Aug', '09 Aug', '10 Aug', '11 Aug', '12 Aug', '13 Aug', '14 Aug', '15 Aug'],
+                datasets: [{
+                    label: 'Daily',
+                    data: [60, 77, 60, 79, 87, 91, 57, 77, 40, 60, 77, 60, 40, 65, 55],
+                    borderColor: '#551FFF',
+                    fill: true,
+                    backgroundColor: 'rgba(0, 0, 255, 0.1)',
+                    pointStyle: 'circle',
+                    pointRadius: 3,
+                    pointBackgroundColor: '#FFF',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                        }   
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        
+        const ctx3 = document.getElementById('orderChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: ['01', '02', '03', '04', '05', '06'],
+                datasets: [{
+                    label: 'Last 6 days',
+                    data: [10, 5, 20, 15, 10, 30],
+                    borderColor: '#551FFF',
+                    backgroundColor: 'rgba(0, 0, 255, 0)',
+                    fill: true,
+                    pointStyle: 'circle',
+                    pointRadius: 1,
+                    pointBackgroundColor: '#551FFF'
+                }, {
+                    label: 'Last Week',
+                    data: [15, 20, 10, 25, 15, 25],
+                    borderColor: '#D0D2DA',
+                    backgroundColor: 'rgba(128, 128, 128, 0)',
+                    fill: true,
+                    pointStyle: 'circle',
+                    pointRadius: 1,
+                    pointBackgroundColor: '#D0D2DA'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                        }   
+                    }
+                },
+            }
+        });
+    </script>
+</body>
+</html>
